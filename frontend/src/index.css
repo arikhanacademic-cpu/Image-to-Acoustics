@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { font-feature-settings: "ss01", "cv11"; -webkit-font-smoothing: antialiased; }
+  body { @apply bg-ink text-text font-sans; }
+  :focus-visible { outline: 2px solid #A493FF; outline-offset: 2px; border-radius: 6px; }
+  ::selection { background: #7D69F255; }
+}
+
+@layer components {
+  .panel { @apply bg-panel border border-line rounded-xl; }
+  .field { @apply bg-raised border border-line rounded-lg px-3 py-2 text-sm text-text placeholder:text-faint
+           focus:outline-none focus:border-accent/70 transition-colors; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium
+         transition-colors disabled:opacity-40 disabled:cursor-not-allowed; }
+  .btn-primary { @apply btn bg-accent text-ink hover:bg-[#B6A8FF]; }
+  .btn-quiet { @apply btn bg-raised text-text border border-line hover:border-faint; }
+  .num { font-variant-numeric: tabular-nums; }
+  .step { @apply inline-flex h-5 w-5 items-center justify-center rounded-full border border-line text-2xs text-muted num; }
+}
+
+/* Range input */
+input[type="range"] { -webkit-appearance: none; appearance: none; background: transparent; width: 100%; height: 20px; }
+input[type="range"]::-webkit-slider-runnable-track { height: 3px; border-radius: 3px;
+  background: linear-gradient(to right, #A493FF var(--p, 50%), #2F2B38 var(--p, 50%)); }
+input[type="range"]::-moz-range-track { height: 3px; border-radius: 3px; background: #2F2B38; }
+input[type="range"]::-moz-range-progress { height: 3px; border-radius: 3px; background: #A493FF; }
+input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; height: 14px; width: 14px; border-radius: 50%;
+  background: #ECE8F2; margin-top: -5.5px; border: 3px solid #17151C; box-shadow: 0 0 0 1px #A493FF; }
+input[type="range"]::-moz-range-thumb { height: 10px; width: 10px; border-radius: 50%; background: #ECE8F2;
+  border: 3px solid #17151C; box-shadow: 0 0 0 1px #A493FF; }
+
+/* The one orchestrated motion: a scan line while the image is being analysed */
+@keyframes scan { 0% { transform: translateY(-10%); opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { transform: translateY(1000%); opacity: 0; } }
+.scanline { animation: scan 2.2s cubic-bezier(.4,0,.2,1) infinite; }
+@media (prefers-reduced-motion: reduce) { .scanline { animation: none; opacity: .6; } }

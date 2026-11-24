@@ -1,0 +1,12 @@
+.env
+data/
+__pycache__/
+*.pyc
+.pytest_cache/
+frontend/node_modules/
+frontend/dist/
+samples/comparison/*.wav
+.venv/
+*.tsbuildinfo
+montage.mp4
+montage.json
